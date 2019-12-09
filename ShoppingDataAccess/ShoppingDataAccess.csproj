@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F2A884C1-D176-42BC-BDE4-97E4E652C661}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShoppingDataAccess</RootNamespace>
+    <AssemblyName>ShoppingDataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShoppingCart.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCart.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingCart.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ShoppingCart.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ShoppingCart.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_All_User.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_appointment.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Brands.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_category.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Cities.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Countries.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_credit_debit_history.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_order_product.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_OTP.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_Products.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_service_management.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_shipping_address.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_States.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tbl_User_Types.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+    <Compile Include="usp_user_login_Result.cs">
+      <DependentUpon>ShoppingCart.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="packages.config" />
+    <EntityDeploy Include="ShoppingCart.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>ShoppingCart.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="ShoppingCart.edmx.diagram">
+      <DependentUpon>ShoppingCart.edmx</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ShoppingCart.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShoppingCart.edmx</DependentUpon>
+      <LastGenOutput>ShoppingCart.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="ShoppingCart.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>ShoppingCart.edmx</DependentUpon>
+      <LastGenOutput>ShoppingCart.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

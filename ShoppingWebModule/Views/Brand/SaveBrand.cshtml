@@ -1,0 +1,76 @@
+﻿@model ShoppingDataModel.Model.BrandModel
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <script src="~/Content/plugins/morrisjs/morris.js"></script>
+    <script src="~/Content/js/admin.js"></script>
+
+
+    <link href="~/Content/css/themes/all-themes.css" rel="stylesheet" />
+    <title>Add Brand</title>
+
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body class="theme-red">
+    <div>
+        <div class="card" style="margin-top:30px;margin-left:30px;margin-right:30px;margin-bottom:30px;">
+            <div class="header">
+                <h2>
+                    Brand Details
+                </h2>
+            </div>
+            <div style="text-align:left;margin-left:20px;margin-top:15px">
+                <a href="@Url.Action("Index", "Brand",new { intBrandId = 0 })" class="elements">
+                    <i class="fa fa-arrow-circle-left" style="font-size:48px;color:#1f91f3"></i>
+                </a>
+
+            </div>
+            <div style="margin-left:40px;margin-right:50px;margin-top:10px;margin-bottom:20px; border:ridge;" class="body">
+
+                @using (Html.BeginForm("SaveBrand", "Brand", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(s => s.intBrandId)
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextBoxFor(s => s.strBrandName, new { placeholder = "Brand Name", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.strBrandName, "", new { @class = "error" })
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <button class="btn btn-primary waves-effect" style="margin-left:280px" type="submit">SUBMIT</button>
+                }
+
+            </div>
+        </div>
+    </div>
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+</html>
+

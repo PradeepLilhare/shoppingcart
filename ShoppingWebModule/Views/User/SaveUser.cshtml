@@ -1,0 +1,221 @@
+﻿@model ShoppingDataModel.Model.UserModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Content/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+    <script src="~/Content/plugins/morrisjs/morris.js"></script>
+    <script src="~/Content/js/admin.js"></script>
+
+
+    <link href="~/Content/css/themes/all-themes.css" rel="stylesheet" />
+    <style type="text/css">
+        body {
+            font-family: Arial;
+            font-size: 10pt;
+        }
+
+        .error {
+            color: red;
+        }
+    </style>
+    <title>Add User</title>
+</head>
+<body class="theme-red">
+    <div>
+        @*<div class="row clearfix">*@
+        @*<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">*@
+        <div class="card" style="margin-top:30px;margin-left:30px;margin-right:30px;margin-bottom:30px;">
+            <div class="header">
+                <h2>
+                    Add User
+                </h2>
+            </div>
+            <div style="text-align:left;margin-left:20px;margin-top:15px">
+                <a href="@Url.Action("Index", "User",new { intUserId = 0 })" class="elements">
+                    <i class="fa fa-arrow-circle-left" style="font-size:48px;color:#1f91f3"></i>
+                </a>
+
+            </div>
+            <div style="margin-left:40px;margin-right:50px;margin-top:10px;margin-bottom:20px; border:ridge;" class="body">
+                @using (Html.BeginForm("SaveUser", "User", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(s => s.intUserId)
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">person</i>
+                                </span>
+                                <div class="form-line">
+                                    @*<select id="idcity" class="form-control" placeholder="City">
+                                <option>-- Select User Type --</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>*@
+                                    @Html.DropDownListFor(M => M.intModuleTypeId, new SelectList(Model._listUserType, "int_id", "v_User_Type"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.intModuleTypeId, "", new { @class = "error" })
+                                    @*<input type="text" class="form-control date" placeholder="User Type">*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">person</i>
+                                </span>
+                                <div class="form-line">
+                                    @Html.TextBoxFor(s => s.strFirstName, new { placeholder = "First Name", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.strFirstName, "", new { @class = "error" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">person</i>
+                                </span>
+                                <div class="form-line">
+                                    @Html.TextBoxFor(s => s.strLastName, new { placeholder = "Last Name", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.strFirstName, "", new { @class = "error" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">email</i>
+                                </span>
+                                <div class="form-line">
+                                    @Html.TextBoxFor(s => s.strEmailId, new { placeholder = "Email Id", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.strEmailId, "", new { @class = "error" })
+
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="input-group">
+                                <span class="input-group-addon">
+                                    <i class="material-icons">phone_iphone</i>
+                                </span>
+                                <div class="form-line">
+                                    @Html.TextBoxFor(s => s.strMobileNo, new { placeholder = "Mobile No", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.strMobileNo, "", new { @class = "error" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.TextBoxFor(s => s.strAddress, new { placeholder = "Address", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.strAddress, "", new { @class = "error" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.DropDownListFor(M => M.intCityId, new SelectList(Model._listCity, "int_id", "v_name"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.intCityId, "", new { @class = "error" })
+                                    @*<select id="idcity" class="form-control" placeholder="City">
+                                <option>-- Select City --</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.DropDownListFor(M => M.intStateId, new SelectList(Model._listState, "int_id", "v_name"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.intStateId, "", new { @class = "error" })
+                                    @*<select id="idstate" class="form-control" placeholder="State">
+                                <option>-- Select State --</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>*@
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.DropDownListFor(M => M.intCountryId, new SelectList(Model._listCountry, "int_id", "v_name"), new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.intCountryId, "", new { @class = "error" })
+                                    @*<select id="idcountry" class="form-control" placeholder="Country">
+                                <option>-- Select Country --</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                            </select>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row clearfix">
+                        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    @Html.PasswordFor(s => s.strPassword, new { placeholder = "Password", @class = "form-control" })
+                                    @Html.ValidationMessageFor(m => m.strPassword, "", new { @class = "error" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @*  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" class="form-control" placeholder="Category">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-6">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="file" class="form-control" placeholder="Quantity">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="form-group">
+                    <div id="box" style="width:800px;height:150px;border:ridge">
+                        <textarea name="description" cols="15" rows="6" placeholder="Product Description" class="form-control" required></textarea>
+                    </div>
+                </div>
+            </div>*@
+                    <button class="btn btn-primary waves-effect" style="margin-left:280px" type="submit">Save</button>
+                }
+            </div>
+            @*</section>*@
+
+        </div>
+    </div>
+    @*</div>*@
+
+    @*</div>*@
+</body>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/jqueryval")
+</html>

@@ -1,0 +1,734 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ShoppingCart.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbl_All_User">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_FirstName" Type="varchar" MaxLength="200" />
+          <Property Name="v_LastName" Type="varchar" MaxLength="200" />
+          <Property Name="int_CityId" Type="int" />
+          <Property Name="int_StateId" Type="int" />
+          <Property Name="int_CountryId" Type="int" />
+          <Property Name="v_address" Type="varchar" MaxLength="200" />
+          <Property Name="v_Pin" Type="varchar" MaxLength="12" />
+          <Property Name="v_MobileNo" Type="varchar" MaxLength="20" />
+          <Property Name="v_EmailId" Type="varchar" MaxLength="200" />
+          <Property Name="v_Password" Type="varchar" MaxLength="100" />
+          <Property Name="o_Cart" Type="varbinary" MaxLength="1000" />
+          <Property Name="int_User_Type" Type="int" />
+          <Property Name="dt_CreatedOn" Type="datetime" />
+          <Property Name="b_IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_appointment">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_appointment" Type="varchar(max)" />
+          <Property Name="int_emp_Id" Type="int" />
+          <Property Name="int_status" Type="int" />
+          <Property Name="dt_created_dt" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Brands">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_name" Type="varchar" MaxLength="500" />
+          <Property Name="b_IsActive" Type="bit" />
+          <Property Name="dt_CreatedOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_category">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_category" Type="varchar" MaxLength="500" />
+          <Property Name="b_IsActive" Type="bit" />
+          <Property Name="dt_inserted_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Cities">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_City" Type="varchar" MaxLength="200" />
+          <Property Name="int_State_Id" Type="int" />
+          <Property Name="b_flag" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_Countries">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_country" Type="varchar" MaxLength="200" />
+          <Property Name="v_currency" Type="varchar" MaxLength="100" />
+          <Property Name="v_currency_symbol" Type="varchar" MaxLength="50" />
+          <Property Name="b_IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_credit_debit_history">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_UserId" Type="int" />
+          <Property Name="fl_funds_added" Type="float" />
+          <Property Name="fl_funds_debited" Type="float" />
+          <Property Name="int_credit_for_id" Type="int" />
+          <Property Name="fl_updated_funds" Type="float" />
+          <Property Name="int_credit_type_id" Type="int" />
+          <Property Name="int_payment_type_id" Type="int" />
+          <Property Name="b_IsActive" Type="bit" />
+          <Property Name="dt_created_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_order_product">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_order_id" Type="int" />
+          <Property Name="int_product_id" Type="int" />
+          <Property Name="fl_weight" Type="float" />
+          <Property Name="fl_selling_price" Type="float" />
+          <Property Name="int_color_id" Type="int" />
+          <Property Name="int_quantity" Type="int" />
+          <Property Name="fl_rate" Type="float" />
+          <Property Name="fl_CGST" Type="float" />
+          <Property Name="fl_IGST" Type="float" />
+          <Property Name="fl_SGST" Type="float" />
+          <Property Name="fl_UGST" Type="float" />
+          <Property Name="fl_CGSTPercent" Type="float" />
+          <Property Name="fl_SGSTPercent" Type="float" />
+          <Property Name="fl_UGSTPercent" Type="float" />
+          <Property Name="fl_IGSTPercent" Type="float" />
+          <Property Name="b_is_modify_product" Type="bit" />
+          <Property Name="dt_inserted_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_OTP">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_moduleType_id" Type="int" />
+          <Property Name="int_user_id" Type="int" />
+          <Property Name="int_OTP" Type="int" />
+          <Property Name="dt_OTP_created" Type="datetime" />
+          <Property Name="dt_login_time" Type="datetime" />
+          <Property Name="dt_logout_time" Type="datetime" />
+          <Property Name="v_device_id" Type="varchar" MaxLength="200" />
+          <Property Name="v_device_token" Type="varchar" MaxLength="200" />
+          <Property Name="v_device_mode" Type="varchar" MaxLength="50" />
+          <Property Name="dt_created_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_Products">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_code" Type="varchar" MaxLength="200" />
+          <Property Name="v_name" Type="varchar" MaxLength="200" />
+          <Property Name="fl_price" Type="float" />
+          <Property Name="fl_weight" Type="float" />
+          <Property Name="v_description_info" Type="varchar(max)" />
+          <Property Name="v_image" Type="varchar" MaxLength="200" />
+          <Property Name="int_mpq" Type="int" />
+          <Property Name="int_packs" Type="int" />
+          <Property Name="int_quantity" Type="int" />
+          <Property Name="fl_length" Type="float" />
+          <Property Name="fl_breadth" Type="float" />
+          <Property Name="fl_height" Type="float" />
+          <Property Name="v_hs_code" Type="varchar" MaxLength="100" />
+          <Property Name="v_product_video_name" Type="varchar" MaxLength="100" />
+          <Property Name="fl_GST" Type="float" />
+          <Property Name="fl_QtyDiscount" Type="float" />
+          <Property Name="int_CategoryId" Type="int" />
+          <Property Name="int_BrandsId" Type="int" />
+          <Property Name="dt_created_on" Type="datetime" />
+          <Property Name="dt_modified_on" Type="datetime" />
+          <Property Name="b_IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="tbl_service_management">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_service" Type="varchar(max)" />
+          <Property Name="v_latitude" Type="varchar" MaxLength="100" />
+          <Property Name="v_longitude" Type="varchar" MaxLength="100" />
+          <Property Name="v_address" Type="varchar" MaxLength="1000" />
+          <Property Name="v_problem" Type="varchar" MaxLength="500" />
+          <Property Name="int_preferred_time" Type="int" />
+          <Property Name="v_image_path" Type="varchar" MaxLength="100" />
+          <Property Name="int_emp_id" Type="int" />
+          <Property Name="int_status_id" Type="int" />
+          <Property Name="int_tip_amount" Type="int" />
+          <Property Name="dt_created_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_shipping_address">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="int_user_id" Type="int" />
+          <Property Name="int_city_id" Type="int" />
+          <Property Name="int_state_id" Type="int" />
+          <Property Name="v_pin" Type="varchar" MaxLength="20" />
+          <Property Name="v_address" Type="varchar" MaxLength="200" />
+          <Property Name="v_mobile_no" Type="varchar" MaxLength="20" />
+          <Property Name="b_IsActive" Type="bit" />
+          <Property Name="dt_created_on" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_States">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_State" Type="varchar" MaxLength="200" />
+          <Property Name="int_CountryId" Type="int" />
+          <Property Name="b_IsActive" Type="bit" />
+          <Property Name="b_IsUnionTerritories" Type="bit" />
+          <Property Name="dt_Created_On" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbl_User_Types">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="v_name" Type="varchar" MaxLength="100" />
+          <Property Name="b_IsActive" Type="bit" />
+          <Property Name="dt_Created_On" Type="datetime" />
+        </EntityType>
+        <Function Name="usp_get_user_cart_by_id" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="witty_ecommerce">
+          <Parameter Name="int_user_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="usp_insert_shopping_cart" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="witty_ecommerce">
+          <Parameter Name="int_user_id" Type="int" Mode="In" />
+          <Parameter Name="buffer" Type="varbinary" Mode="In" />
+        </Function>
+        <Function Name="usp_user_login" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="witty_ecommerce">
+          <Parameter Name="v_EmailId" Type="int" Mode="In" />
+          <Parameter Name="v_Password" Type="varchar" Mode="In" />
+          <Parameter Name="v_MobileNo" Type="varchar" Mode="In" />
+          <Parameter Name="intModuleTypeId" Type="int" Mode="In" />
+          <Parameter Name="strDeviceId" Type="varchar" Mode="In" />
+          <Parameter Name="strDevicetoken" Type="varchar" Mode="In" />
+          <Parameter Name="strDevicemode" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="ShoppingCartStoreContainer">
+          <EntitySet Name="tbl_All_User" EntityType="Self.tbl_All_User" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_appointment" EntityType="Self.tbl_appointment" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_Brands" EntityType="Self.tbl_Brands" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_category" EntityType="Self.tbl_category" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_Cities" EntityType="Self.tbl_Cities" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_Countries" EntityType="Self.tbl_Countries" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_credit_debit_history" EntityType="Self.tbl_credit_debit_history" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_order_product" EntityType="Self.tbl_order_product" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_OTP" EntityType="Self.tbl_OTP" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_Products" EntityType="Self.tbl_Products" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_service_management" EntityType="Self.tbl_service_management" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_shipping_address" EntityType="Self.tbl_shipping_address" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_States" EntityType="Self.tbl_States" Schema="witty_ecommerce" store:Type="Tables" />
+          <EntitySet Name="tbl_User_Types" EntityType="Self.tbl_User_Types" Schema="witty_ecommerce" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ShoppingCart" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tbl_All_User">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_FirstName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="v_LastName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="int_CityId" Type="Int32" />
+          <Property Name="int_StateId" Type="Int32" />
+          <Property Name="int_CountryId" Type="Int32" />
+          <Property Name="v_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="v_Pin" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="v_MobileNo" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="v_EmailId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="v_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="o_Cart" Type="Binary" MaxLength="1000" FixedLength="false" />
+          <Property Name="int_User_Type" Type="Int32" />
+          <Property Name="dt_CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="b_IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_appointment">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_appointment" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="int_emp_Id" Type="Int32" />
+          <Property Name="int_status" Type="Int32" />
+          <Property Name="dt_created_dt" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Brands">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_name" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="b_IsActive" Type="Boolean" />
+          <Property Name="dt_CreatedOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_category">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_category" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="b_IsActive" Type="Boolean" />
+          <Property Name="dt_inserted_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Cities">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_City" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="int_State_Id" Type="Int32" />
+          <Property Name="b_flag" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_Countries">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_country" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="v_currency" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="v_currency_symbol" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="b_IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_credit_debit_history">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="int_UserId" Type="Int32" />
+          <Property Name="fl_funds_added" Type="Double" />
+          <Property Name="fl_funds_debited" Type="Double" />
+          <Property Name="int_credit_for_id" Type="Int32" />
+          <Property Name="fl_updated_funds" Type="Double" />
+          <Property Name="int_credit_type_id" Type="Int32" />
+          <Property Name="int_payment_type_id" Type="Int32" />
+          <Property Name="b_IsActive" Type="Boolean" />
+          <Property Name="dt_created_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_order_product">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="int_order_id" Type="Int32" />
+          <Property Name="int_product_id" Type="Int32" />
+          <Property Name="fl_weight" Type="Double" />
+          <Property Name="fl_selling_price" Type="Double" />
+          <Property Name="int_color_id" Type="Int32" />
+          <Property Name="int_quantity" Type="Int32" />
+          <Property Name="fl_rate" Type="Double" />
+          <Property Name="fl_CGST" Type="Double" />
+          <Property Name="fl_IGST" Type="Double" />
+          <Property Name="fl_SGST" Type="Double" />
+          <Property Name="fl_UGST" Type="Double" />
+          <Property Name="fl_CGSTPercent" Type="Double" />
+          <Property Name="fl_SGSTPercent" Type="Double" />
+          <Property Name="fl_UGSTPercent" Type="Double" />
+          <Property Name="fl_IGSTPercent" Type="Double" />
+          <Property Name="b_is_modify_product" Type="Boolean" />
+          <Property Name="dt_inserted_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_OTP">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="int_moduleType_id" Type="Int32" />
+          <Property Name="int_user_id" Type="Int32" />
+          <Property Name="int_OTP" Type="Int32" />
+          <Property Name="dt_OTP_created" Type="DateTime" Precision="3" />
+          <Property Name="dt_login_time" Type="DateTime" Precision="3" />
+          <Property Name="dt_logout_time" Type="DateTime" Precision="3" />
+          <Property Name="v_device_id" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="v_device_token" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="v_device_mode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dt_created_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_Products">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_code" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="v_name" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="fl_price" Type="Double" />
+          <Property Name="fl_weight" Type="Double" />
+          <Property Name="v_description_info" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="v_image" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="int_mpq" Type="Int32" />
+          <Property Name="int_packs" Type="Int32" />
+          <Property Name="int_quantity" Type="Int32" />
+          <Property Name="fl_length" Type="Double" />
+          <Property Name="fl_breadth" Type="Double" />
+          <Property Name="fl_height" Type="Double" />
+          <Property Name="v_hs_code" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="v_product_video_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="fl_GST" Type="Double" />
+          <Property Name="fl_QtyDiscount" Type="Double" />
+          <Property Name="int_CategoryId" Type="Int32" />
+          <Property Name="int_BrandsId" Type="Int32" />
+          <Property Name="dt_created_on" Type="DateTime" Precision="3" />
+          <Property Name="dt_modified_on" Type="DateTime" Precision="3" />
+          <Property Name="b_IsActive" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="tbl_service_management">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_service" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="v_latitude" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="v_longitude" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="v_address" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="v_problem" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="int_preferred_time" Type="Int32" />
+          <Property Name="v_image_path" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="int_emp_id" Type="Int32" />
+          <Property Name="int_status_id" Type="Int32" />
+          <Property Name="int_tip_amount" Type="Int32" />
+          <Property Name="dt_created_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_shipping_address">
+          <Key>
+            <PropertyRef Name="int_id" />
+          </Key>
+          <Property Name="int_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="int_user_id" Type="Int32" />
+          <Property Name="int_city_id" Type="Int32" />
+          <Property Name="int_state_id" Type="Int32" />
+          <Property Name="v_pin" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="v_address" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="v_mobile_no" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="b_IsActive" Type="Boolean" />
+          <Property Name="dt_created_on" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_States">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_State" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="int_CountryId" Type="Int32" />
+          <Property Name="b_IsActive" Type="Boolean" />
+          <Property Name="b_IsUnionTerritories" Type="Boolean" />
+          <Property Name="dt_Created_On" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbl_User_Types">
+          <Key>
+            <PropertyRef Name="int_Id" />
+          </Key>
+          <Property Name="int_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="v_name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="b_IsActive" Type="Boolean" />
+          <Property Name="dt_Created_On" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityContainer Name="newconecommerce" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbl_All_User" EntityType="Self.tbl_All_User" />
+          <EntitySet Name="tbl_appointment" EntityType="Self.tbl_appointment" />
+          <EntitySet Name="tbl_Brands" EntityType="Self.tbl_Brands" />
+          <EntitySet Name="tbl_category" EntityType="Self.tbl_category" />
+          <EntitySet Name="tbl_Cities" EntityType="Self.tbl_Cities" />
+          <EntitySet Name="tbl_Countries" EntityType="Self.tbl_Countries" />
+          <EntitySet Name="tbl_credit_debit_history" EntityType="Self.tbl_credit_debit_history" />
+          <EntitySet Name="tbl_order_product" EntityType="Self.tbl_order_product" />
+          <EntitySet Name="tbl_OTP" EntityType="Self.tbl_OTP" />
+          <EntitySet Name="tbl_Products" EntityType="Self.tbl_Products" />
+          <EntitySet Name="tbl_service_management" EntityType="Self.tbl_service_management" />
+          <EntitySet Name="tbl_shipping_address" EntityType="Self.tbl_shipping_address" />
+          <EntitySet Name="tbl_States" EntityType="Self.tbl_States" />
+          <EntitySet Name="tbl_User_Types" EntityType="Self.tbl_User_Types" />
+          <FunctionImport Name="usp_get_user_cart_by_id" ReturnType="Collection(Binary)">
+          <Parameter Name="int_user_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="usp_insert_shopping_cart">
+            <Parameter Name="int_user_id" Mode="In" Type="Int32" />
+            <Parameter Name="buffer" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="usp_user_login" ReturnType="Collection(ShoppingCart.usp_user_login_Result)">
+            <Parameter Name="v_EmailId" Mode="In" Type="Int32" />
+            <Parameter Name="v_Password" Mode="In" Type="String" />
+            <Parameter Name="v_MobileNo" Mode="In" Type="String" />
+            <Parameter Name="intModuleTypeId" Mode="In" Type="Int32" />
+            <Parameter Name="strDeviceId" Mode="In" Type="String" />
+            <Parameter Name="strDevicetoken" Mode="In" Type="String" />
+            <Parameter Name="strDevicemode" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="usp_user_login_Result">
+          <Property Type="Int32" Name="int_id" Nullable="false" />
+          <Property Type="String" Name="strName" Nullable="true" MaxLength="401" />
+          <Property Type="String" Name="strEmailId" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="strMobileNo" Nullable="true" MaxLength="20" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ShoppingCartStoreContainer" CdmEntityContainer="newconecommerce">
+          <EntitySetMapping Name="tbl_All_User">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_All_User">
+              <MappingFragment StoreEntitySet="tbl_All_User">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="v_FirstName" ColumnName="v_FirstName" />
+                <ScalarProperty Name="v_LastName" ColumnName="v_LastName" />
+                <ScalarProperty Name="int_CityId" ColumnName="int_CityId" />
+                <ScalarProperty Name="int_StateId" ColumnName="int_StateId" />
+                <ScalarProperty Name="int_CountryId" ColumnName="int_CountryId" />
+                <ScalarProperty Name="v_address" ColumnName="v_address" />
+                <ScalarProperty Name="v_Pin" ColumnName="v_Pin" />
+                <ScalarProperty Name="v_MobileNo" ColumnName="v_MobileNo" />
+                <ScalarProperty Name="v_EmailId" ColumnName="v_EmailId" />
+                <ScalarProperty Name="v_Password" ColumnName="v_Password" />
+                <ScalarProperty Name="o_Cart" ColumnName="o_Cart" />
+                <ScalarProperty Name="int_User_Type" ColumnName="int_User_Type" />
+                <ScalarProperty Name="dt_CreatedOn" ColumnName="dt_CreatedOn" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_appointment">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_appointment">
+              <MappingFragment StoreEntitySet="tbl_appointment">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="v_appointment" ColumnName="v_appointment" />
+                <ScalarProperty Name="int_emp_Id" ColumnName="int_emp_Id" />
+                <ScalarProperty Name="int_status" ColumnName="int_status" />
+                <ScalarProperty Name="dt_created_dt" ColumnName="dt_created_dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Brands">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_Brands">
+              <MappingFragment StoreEntitySet="tbl_Brands">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="v_name" ColumnName="v_name" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+                <ScalarProperty Name="dt_CreatedOn" ColumnName="dt_CreatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_category">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_category">
+              <MappingFragment StoreEntitySet="tbl_category">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="v_category" ColumnName="v_category" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+                <ScalarProperty Name="dt_inserted_on" ColumnName="dt_inserted_on" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Cities">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_Cities">
+              <MappingFragment StoreEntitySet="tbl_Cities">
+                <ScalarProperty Name="int_Id" ColumnName="int_Id" />
+                <ScalarProperty Name="v_City" ColumnName="v_City" />
+                <ScalarProperty Name="int_State_Id" ColumnName="int_State_Id" />
+                <ScalarProperty Name="b_flag" ColumnName="b_flag" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Countries">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_Countries">
+              <MappingFragment StoreEntitySet="tbl_Countries">
+                <ScalarProperty Name="int_Id" ColumnName="int_Id" />
+                <ScalarProperty Name="v_country" ColumnName="v_country" />
+                <ScalarProperty Name="v_currency" ColumnName="v_currency" />
+                <ScalarProperty Name="v_currency_symbol" ColumnName="v_currency_symbol" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_credit_debit_history">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_credit_debit_history">
+              <MappingFragment StoreEntitySet="tbl_credit_debit_history">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="int_UserId" ColumnName="int_UserId" />
+                <ScalarProperty Name="fl_funds_added" ColumnName="fl_funds_added" />
+                <ScalarProperty Name="fl_funds_debited" ColumnName="fl_funds_debited" />
+                <ScalarProperty Name="int_credit_for_id" ColumnName="int_credit_for_id" />
+                <ScalarProperty Name="fl_updated_funds" ColumnName="fl_updated_funds" />
+                <ScalarProperty Name="int_credit_type_id" ColumnName="int_credit_type_id" />
+                <ScalarProperty Name="int_payment_type_id" ColumnName="int_payment_type_id" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+                <ScalarProperty Name="dt_created_on" ColumnName="dt_created_on" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_order_product">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_order_product">
+              <MappingFragment StoreEntitySet="tbl_order_product">
+                <ScalarProperty Name="int_Id" ColumnName="int_Id" />
+                <ScalarProperty Name="int_order_id" ColumnName="int_order_id" />
+                <ScalarProperty Name="int_product_id" ColumnName="int_product_id" />
+                <ScalarProperty Name="fl_weight" ColumnName="fl_weight" />
+                <ScalarProperty Name="fl_selling_price" ColumnName="fl_selling_price" />
+                <ScalarProperty Name="int_color_id" ColumnName="int_color_id" />
+                <ScalarProperty Name="int_quantity" ColumnName="int_quantity" />
+                <ScalarProperty Name="fl_rate" ColumnName="fl_rate" />
+                <ScalarProperty Name="fl_CGST" ColumnName="fl_CGST" />
+                <ScalarProperty Name="fl_IGST" ColumnName="fl_IGST" />
+                <ScalarProperty Name="fl_SGST" ColumnName="fl_SGST" />
+                <ScalarProperty Name="fl_UGST" ColumnName="fl_UGST" />
+                <ScalarProperty Name="fl_CGSTPercent" ColumnName="fl_CGSTPercent" />
+                <ScalarProperty Name="fl_SGSTPercent" ColumnName="fl_SGSTPercent" />
+                <ScalarProperty Name="fl_UGSTPercent" ColumnName="fl_UGSTPercent" />
+                <ScalarProperty Name="fl_IGSTPercent" ColumnName="fl_IGSTPercent" />
+                <ScalarProperty Name="b_is_modify_product" ColumnName="b_is_modify_product" />
+                <ScalarProperty Name="dt_inserted_on" ColumnName="dt_inserted_on" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_OTP">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_OTP">
+              <MappingFragment StoreEntitySet="tbl_OTP">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="int_moduleType_id" ColumnName="int_moduleType_id" />
+                <ScalarProperty Name="int_user_id" ColumnName="int_user_id" />
+                <ScalarProperty Name="int_OTP" ColumnName="int_OTP" />
+                <ScalarProperty Name="dt_OTP_created" ColumnName="dt_OTP_created" />
+                <ScalarProperty Name="dt_login_time" ColumnName="dt_login_time" />
+                <ScalarProperty Name="dt_logout_time" ColumnName="dt_logout_time" />
+                <ScalarProperty Name="v_device_id" ColumnName="v_device_id" />
+                <ScalarProperty Name="v_device_token" ColumnName="v_device_token" />
+                <ScalarProperty Name="v_device_mode" ColumnName="v_device_mode" />
+                <ScalarProperty Name="dt_created_on" ColumnName="dt_created_on" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_Products">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_Products">
+              <MappingFragment StoreEntitySet="tbl_Products">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="v_code" ColumnName="v_code" />
+                <ScalarProperty Name="v_name" ColumnName="v_name" />
+                <ScalarProperty Name="fl_price" ColumnName="fl_price" />
+                <ScalarProperty Name="fl_weight" ColumnName="fl_weight" />
+                <ScalarProperty Name="v_description_info" ColumnName="v_description_info" />
+                <ScalarProperty Name="v_image" ColumnName="v_image" />
+                <ScalarProperty Name="int_mpq" ColumnName="int_mpq" />
+                <ScalarProperty Name="int_packs" ColumnName="int_packs" />
+                <ScalarProperty Name="int_quantity" ColumnName="int_quantity" />
+                <ScalarProperty Name="fl_length" ColumnName="fl_length" />
+                <ScalarProperty Name="fl_breadth" ColumnName="fl_breadth" />
+                <ScalarProperty Name="fl_height" ColumnName="fl_height" />
+                <ScalarProperty Name="v_hs_code" ColumnName="v_hs_code" />
+                <ScalarProperty Name="v_product_video_name" ColumnName="v_product_video_name" />
+                <ScalarProperty Name="fl_GST" ColumnName="fl_GST" />
+                <ScalarProperty Name="fl_QtyDiscount" ColumnName="fl_QtyDiscount" />
+                <ScalarProperty Name="int_CategoryId" ColumnName="int_CategoryId" />
+                <ScalarProperty Name="int_BrandsId" ColumnName="int_BrandsId" />
+                <ScalarProperty Name="dt_created_on" ColumnName="dt_created_on" />
+                <ScalarProperty Name="dt_modified_on" ColumnName="dt_modified_on" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_service_management">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_service_management">
+              <MappingFragment StoreEntitySet="tbl_service_management">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="v_service" ColumnName="v_service" />
+                <ScalarProperty Name="v_latitude" ColumnName="v_latitude" />
+                <ScalarProperty Name="v_longitude" ColumnName="v_longitude" />
+                <ScalarProperty Name="v_address" ColumnName="v_address" />
+                <ScalarProperty Name="v_problem" ColumnName="v_problem" />
+                <ScalarProperty Name="int_preferred_time" ColumnName="int_preferred_time" />
+                <ScalarProperty Name="v_image_path" ColumnName="v_image_path" />
+                <ScalarProperty Name="int_emp_id" ColumnName="int_emp_id" />
+                <ScalarProperty Name="int_status_id" ColumnName="int_status_id" />
+                <ScalarProperty Name="int_tip_amount" ColumnName="int_tip_amount" />
+                <ScalarProperty Name="dt_created_on" ColumnName="dt_created_on" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_shipping_address">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_shipping_address">
+              <MappingFragment StoreEntitySet="tbl_shipping_address">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="int_user_id" ColumnName="int_user_id" />
+                <ScalarProperty Name="int_city_id" ColumnName="int_city_id" />
+                <ScalarProperty Name="int_state_id" ColumnName="int_state_id" />
+                <ScalarProperty Name="v_pin" ColumnName="v_pin" />
+                <ScalarProperty Name="v_address" ColumnName="v_address" />
+                <ScalarProperty Name="v_mobile_no" ColumnName="v_mobile_no" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+                <ScalarProperty Name="dt_created_on" ColumnName="dt_created_on" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_States">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_States">
+              <MappingFragment StoreEntitySet="tbl_States">
+                <ScalarProperty Name="int_Id" ColumnName="int_Id" />
+                <ScalarProperty Name="v_State" ColumnName="v_State" />
+                <ScalarProperty Name="int_CountryId" ColumnName="int_CountryId" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+                <ScalarProperty Name="b_IsUnionTerritories" ColumnName="b_IsUnionTerritories" />
+                <ScalarProperty Name="dt_Created_On" ColumnName="dt_Created_On" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbl_User_Types">
+            <EntityTypeMapping TypeName="ShoppingCart.tbl_User_Types">
+              <MappingFragment StoreEntitySet="tbl_User_Types">
+                <ScalarProperty Name="int_Id" ColumnName="int_Id" />
+                <ScalarProperty Name="v_name" ColumnName="v_name" />
+                <ScalarProperty Name="b_IsActive" ColumnName="b_IsActive" />
+                <ScalarProperty Name="dt_Created_On" ColumnName="dt_Created_On" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="usp_get_user_cart_by_id" FunctionName="ShoppingCart.Store.usp_get_user_cart_by_id" />
+          <FunctionImportMapping FunctionImportName="usp_insert_shopping_cart" FunctionName="ShoppingCart.Store.usp_insert_shopping_cart" />
+          <FunctionImportMapping FunctionImportName="usp_user_login" FunctionName="ShoppingCart.Store.usp_user_login">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="ShoppingCart.usp_user_login_Result">
+                <ScalarProperty Name="int_id" ColumnName="int_id" />
+                <ScalarProperty Name="strName" ColumnName="strName" />
+                <ScalarProperty Name="strEmailId" ColumnName="strEmailId" />
+                <ScalarProperty Name="strMobileNo" ColumnName="strMobileNo" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

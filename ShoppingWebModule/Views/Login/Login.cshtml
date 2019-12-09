@@ -1,0 +1,95 @@
+﻿
+@using ShoppingDataModel.Model
+@model LoginViewModel
+@{
+
+    ViewBag.Title = "Log in";
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Just Cool | Admin Panel</title>
+    <!-- Favicon-->
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+    <!-- Bootstrap Core Css -->
+
+    <link href="~/Content/plugins/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/plugins/node-waves/waves.css" rel="stylesheet" />
+    <link href="~/Content/plugins/animate-css/animate.css" rel="stylesheet" />
+    <link href="~/Content/css/style.css" rel="stylesheet" />
+</head>
+<body class="login-page">
+    <div class="login-box">
+        <div class="logo">
+            <a href="javascript:void(0);">Just<b>Cool</b></a>
+            <small> Admin Panel</small>
+        </div>
+        <div class="card">
+            <div class="body">
+                @*<form id="sign_in" method="POST">*@
+                <div class="msg">Sign in to start your session </div>
+                @using (Html.BeginForm("Login", "Login", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal panel-body", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(m => m.strEmailId, "", new { @class = "text-danger " })
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">person</i>
+                        </span>
+                        <div class="form-line">
+                            @Html.TextBoxFor(m => m.strEmailId, new{
+                           @class = "form-control ",
+                           placeholder = "User Name"@*, Style = "max-width:100%;"*@})
+                        </div>
+
+                    </div><br>
+                    @Html.ValidationMessageFor(m => m.strPassword, "", new { @class = "text-danger" })
+                    <div class="form-group input-group">
+                        <span class="input-group-addon">
+                            <i class="material-icons">lock</i>
+                        </span>
+                        <div class="form-line">
+                            @Html.PasswordFor(m => m.strPassword, new{
+                           @class = "form-control ",
+                           placeholder = "Password"@*, Style = "max-width:100%;"*@})
+                            @*<input type="password" class="form-control" placeholder="Password" />*@
+                        </div>
+                    </div>
+
+
+                    <input type="submit" value="Log in" class="btn btn-primary login_btn btn-block" /><br>
+
+
+
+                    <div class="form-group" style="margin-bottom:0"> <span class="text-center forgot_N"> @Html.ActionLink("Reset Password", "ResetPassword", new { code = "Login" }) </span> </div>
+                }
+
+
+                @*</form>*@
+            </div>
+        </div>
+    </div>
+    <script src="~/Content/plugins/jquery/jquery.min.js"></script>
+
+    <script src="~/Content/plugins/bootstrap/js/bootstrap.js"></script>
+
+    <script src="~/Content/plugins/node-waves/waves.js"></script>
+
+    <script src="~/Content/js/jquery.validate.js"></script>
+
+    <script src="~/Content/plugins/jquery-validation/jquery.validate.js"></script>
+
+    <script src="~/Content/js/admin.js"></script>
+
+    <script src="~/Content/js/sign-in.js"></script>
+    <script src="~/Content/js/pages/examples/sign-in.js"></script>
+
+</body>
+</html>
